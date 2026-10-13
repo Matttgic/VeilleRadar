@@ -1,0 +1,71 @@
+name: VeilleRadar - Installation initiale
+on:
+  push:
+    paths:
+      - '.github/workflows/bootstrap.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+concurrency:
+  group: veilleradar-bootstrap
+  cancel-in-progress: false
+jobs:
+  install:
+    if: ${{ github.repository == 'Matttgic/VeilleRadar' }}
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Extraire le MVP fourni
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -f VeilleRadar_MVP.zip
+          python - <<'PY'
+          from pathlib import Path
+          from zipfile import ZipFile
+          archive = Path('VeilleRadar_MVP.zip')
+          with ZipFile(archive) as z:
+              members = [m for m in z.infolist() if not m.is_dir()]
+              assert members and len(members) < 100, 'Archive inattendue'
+              for member in members:
+                  p = Path(member.filename)
+                  assert p.parts[0] == 'VeilleRadar' and '..' not in p.parts, 'Chemin interdit'
+              z.extractall('.')
+          assert Path('VeilleRadar/monitor.py').is_file()
+          assert Path('VeilleRadar/tests/test_monitor.py').is_file()
+          assert Path('VeilleRadar/.github/workflows/watch.yml').is_file()
+          PY
+          cp -a VeilleRadar/. ./
+          rm -rf VeilleRadar
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Installer et vérifier les 6 tests
+        run: |
+          python -m pip install -r requirements.txt
+          python -m unittest discover -s tests -v
+      - name: Première publication des données, sans pages surveillées
+        run: python monitor.py
+      - name: Enregistrer les vrais fichiers dans GitHub
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git rm -f VeilleRadar_MVP.zip
+          git add README.md requirements.txt monitor.py notify.py .gitignore config/ docs/ state.json tests/ .github/workflows/watch.yml
+          if ! git diff --cached --quiet; then
+            git commit -m 'feat: installer VeilleRadar MVP depuis archive'
+            git push origin HEAD:main
+          fi
+      - uses: actions/configure-pages@v5
+        with:
+          enablement: true
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./docs
+      - id: deployment
+        uses: actions/deploy-pages@v4
