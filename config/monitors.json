@@ -1,3 +1,10 @@
 {
-  "monitors": []
+  "monitors": [
+    {
+      "id": "claude-code-releases",
+      "name": "Claude Code — nouvelles versions",
+      "url": "https://github.com/anthropics/claude-code/releases",
+      "selector": "h2"
+    }
+  ]
 }
