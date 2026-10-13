@@ -1,15 +1,15 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-10-13T15:43:43+00:00",
+  "updated_at": "2026-10-13T15:44:47+00:00",
   "watches": {
     "claude-code-releases": {
       "id": "claude-code-releases",
       "name": "Claude Code — nouvelles versions",
       "url": "https://github.com/anthropics/claude-code/releases",
-      "selector": "h2",
-      "last_checked": "2026-10-13T15:43:43+00:00",
-      "hash": "15aa3098271ccf2beebe682648e3179b6ae3f5919aea1ee835c128a09332f71b",
-      "excerpt": "Navigation Menu Repository navigation Release list v2.1.296 Sorry, something went wrong. Sorry, something went wrong. No results found What's changed v2.1.295 Sorry, something went wrong. Sorry, something went wrong. No results found What's",
+      "selector": "a[href*='/releases/tag/']",
+      "last_checked": "2026-10-13T15:44:47+00:00",
+      "hash": "cfce08ff2bfa8894d90b8fd166ef302f063b76f1890cbb4c0c9e8ea90be4b19c",
+      "excerpt": "v2.1.296 Read more v2.1.295 Read more v2.1.294 v2.1.293 v2.1.292 Read more v2.1.291 v2.1.290 Read more v2.1.289 v2.1.288 Read more v2.1.287 Read more",
       "last_change": null,
       "changes": 0,
       "status": "baseline",
