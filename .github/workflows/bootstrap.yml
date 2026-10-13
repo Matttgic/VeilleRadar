@@ -56,7 +56,8 @@ jobs:
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git rm -f VeilleRadar_MVP.zip
-          git add README.md requirements.txt monitor.py notify.py .gitignore config/ docs/ state.json tests/ .github/workflows/watch.yml
+          git add README.md requirements.txt monitor.py notify.py .gitignore config/ docs/ state.json tests/
+          # Workflow installed separately via GitHub contents API (Actions token lacks workflow permission).
           if ! git diff --cached --quiet; then
             git commit -m 'feat: installer VeilleRadar MVP depuis archive'
             git push origin HEAD:main
