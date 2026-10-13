@@ -1,6 +1,11 @@
 name: VeilleRadar - Surveillance et publication
 on:
   workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'config/monitors.json'
+      - '.github/workflows/watch.yml'
   schedule:
     - cron: '13 * * * *'
 permissions:
