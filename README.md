@@ -33,6 +33,28 @@
 5. Pour Telegram, créez un bot avec BotFather, renseignez `TELEGRAM_BOT_TOKEN` et `TELEGRAM_CHAT_ID` dans **Settings → Secrets and variables → Actions**. Ne publiez jamais ces valeurs dans GitHub ou le chat.
 6. Après publication : `https://<votre-compte>.github.io/VeilleRadar/`.
 
+## Comparateur de produits — première version
+
+La page publique https://matttgic.github.io/VeilleRadar/comparer.html permet à un visiteur de :
+- saisir la référence exacte d'un produit et ouvrir des recherches externes (Google Shopping, Idealo, Dealabs) ;
+- renseigner des offres avec leur URL, prix et livraison ;
+- voir le meilleur prix total **parmi les offres renseignées** ;
+- voir un compromis prix/qualité, uniquement si le visiteur a noté toutes les offres ;
+- retrouver localement sa comparaison sur le même appareil, ou l'effacer.
+
+Les prix ne sont PAS recherchés automatiquement et les offres du visiteur ne sont PAS surveillées en arrière-plan. Les données restent dans le navigateur ; aucune recommandation n'est présentée comme un test indépendant.
+
+**Exemple :** une personne cherche un casque Bluetooth. Elle ouvre les comparateurs externes, saisit deux ou trois offres avec leurs frais de livraison ; VeilleRadar classe uniquement les offres renseignées. Si elle attribue ses propres notes, un curseur peut ajuster le poids du prix et de la qualité.
+
+### Passage au véritable SaaS (non déployé)
+
+1. Comptes clients avec vérification d'email, sessions, suppression de compte.
+2. Base privée isolant chaque veille et son historique, jamais dans les fichiers publics GitHub Pages.
+3. API sécurisée pour l'ajout des URL, validation côté serveur, protections SSRF et quotas.
+4. Worker périodique, notification individuelle et dédoublonnage des changements.
+5. Données marchands légitimes (sources autorisées, identification exacte des produits, fraîcheur des tarifs).
+6. Paiements avec webhooks authentifiés seulement après validation du produit. Aucun abonnement n'est actif à ce stade.
+
 ### Développement local
 
 ```bash

@@ -6,6 +6,8 @@ on:
     paths:
       - 'config/monitors.json'
       - '.github/workflows/watch.yml'
+      - 'docs/**'
+      - 'tests/test_compare.js'
   schedule:
     - cron: '13 * * * *'
 permissions:
@@ -32,6 +34,11 @@ jobs:
         run: pip install -r requirements.txt
       - name: Tests de sécurité et du moteur
         run: python -m unittest discover -s tests -v
+      - name: Valider le comparateur sans accès réseau
+        run: |
+          node --check docs/compare-core.js
+          node --check docs/comparer.js
+          node --test tests/test_compare.js
       - name: Vérifier les pages publiques
         run: python monitor.py
       - name: Enregistrer les observations
