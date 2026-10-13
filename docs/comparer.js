@@ -93,11 +93,13 @@ $('offer-form').addEventListener('submit',e=>{
  if(!item){$('form-status').textContent='Vérifiez le nom, le lien public et les montants en euros.';return;}
  if(data.offers.some(o=>o.url===item.url)){$('form-status').textContent='Cette offre est déjà présente. Retirez-la avant de la remplacer.';return;}
  if(data.offers.length>=30){$('form-status').textContent='Limite de 30 offres par comparaison.';return;}
- if(!data.product){
-  const n=$('product').value.trim();
-  if(!n){$('form-status').textContent='Indiquez d’abord le nom exact du produit.';return;}
-  data.product=n;
+ const inputProduct=$('product').value.trim();
+ if(!inputProduct){$('form-status').textContent='Indiquez d’abord le nom exact du produit.';return;}
+ if(inputProduct!==data.product&&data.offers.length){
+  $('form-status').textContent='Vous avez changé de produit. Cliquez sur « Rechercher des offres » pour confirmer le changement avant d’ajouter ce prix.';
+  return;
  }
+ data.product=inputProduct;
  data.offers.push(item);save();render();
  $('form-status').textContent='Offre ajoutée et comparée.';
  f.reset();f.elements.shipping.value='0';
