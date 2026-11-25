@@ -1,22 +1,30 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-11-24T21:11:45+00:00",
+  "updated_at": "2026-11-25T04:17:04+00:00",
   "watches": {
     "claude-code-releases": {
       "id": "claude-code-releases",
       "name": "Claude Code — nouvelles versions",
       "url": "https://github.com/anthropics/claude-code/releases",
       "selector": "a[href*='/releases/tag/']",
-      "last_checked": "2026-11-24T21:11:45+00:00",
-      "hash": "533c42543bc2831f443ac736504e5e4fb1c8cbf06880bdfc9300f3794455b770",
-      "excerpt": "v2.1.331 Read more v2.1.330 Read more v2.1.329 Read more v2.1.328 Read more v2.1.327 Read more v2.1.326 Read more v2.1.325 Read more v2.1.323 Read more v2.1.322 v2.1.321 Read more",
-      "last_change": "2026-11-24T00:51:27+00:00",
-      "changes": 29,
-      "status": "ok",
+      "last_checked": "2026-11-25T04:17:04+00:00",
+      "hash": "b72bb6b09649e3c534afb730bad2714140ac50d27f658622a7f3c4223c196e79",
+      "excerpt": "v2.1.332 Read more v2.1.331 Read more v2.1.330 Read more v2.1.329 Read more v2.1.328 Read more v2.1.327 Read more v2.1.326 Read more v2.1.325 Read more v2.1.323 Read more v2.1.322",
+      "last_change": "2026-11-25T04:17:04+00:00",
+      "changes": 30,
+      "status": "changed",
       "error": null
     }
   },
   "history": [
+    {
+      "id": "claude-code-releases",
+      "name": "Claude Code — nouvelles versions",
+      "url": "https://github.com/anthropics/claude-code/releases",
+      "at": "2026-11-25T04:17:04+00:00",
+      "before": "v2.1.331 Read more v2.1.330 Read more v2.1.329 Read more v2.1.328 Read more v2.1.327 Read more v2.1.326 Read more v2.1.325 Read more v2.1.323 Read more v2.1.322",
+      "after": "v2.1.332 Read more v2.1.331 Read more v2.1.330 Read more v2.1.329 Read more v2.1.328 Read more v2.1.327 Read more v2.1.326 Read more v2.1.325 Read more v2.1.323"
+    },
     {
       "id": "claude-code-releases",
       "name": "Claude Code — nouvelles versions",
